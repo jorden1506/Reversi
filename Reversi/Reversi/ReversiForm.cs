@@ -117,7 +117,7 @@ namespace Reversi
                 }
             }
 
-            static void Main()
+            void Main()
             {
                 ReversiForm reversiScreen = new ReversiForm();
                 reversiScreen.Text = "Reversi";
@@ -127,6 +127,7 @@ namespace Reversi
 
         }
     }
+}
 
 
 //int t;
