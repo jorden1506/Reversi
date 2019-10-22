@@ -117,7 +117,7 @@ namespace Reversi
                 }
             }
 
-            public static void Main()
+            static void Main()
             {
                 ReversiForm reversiScreen = new ReversiForm();
                 reversiScreen.Text = "Reversi";
