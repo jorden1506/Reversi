@@ -103,9 +103,5 @@ namespace Reversi
                 }
             }
         }
-
-        static void Main(string[] args)
-        {
-        }
     }
 }

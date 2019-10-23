@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Reversi;
-public partial class ReversiForm : Form
+public partial class ReversiFormClass : Form
 {
     public Button newGame, help;
     public Panel p;
@@ -28,7 +28,7 @@ public partial class ReversiForm : Form
     //Adding the playing field
     private Field field;
 
-    public ReversiForm()
+    public void ReversiForm()
     {
         //Creating the buttons
         newGame = new Button();

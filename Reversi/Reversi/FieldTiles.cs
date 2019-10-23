@@ -35,17 +35,15 @@ namespace Reversi
         }
 
         // These reflect the public row and column properties.
-        private int row;
-        private int col;
+        public int row;
+        public int col;
 
         // Drawing tools.
-        private static Pen pen = new Pen(Color.Black);
+        public static Pen pen = new Pen(Color.Black);
         
 
         public FieldTiles(int row, int col)
         {
-            
-            InitializeComponent();
 
 
             this.row = row;
@@ -58,31 +56,17 @@ namespace Reversi
 
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-            }
-            base.Dispose(disposing);
-        }
-
-        
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            
-            this.Name = "SquareControl";
-            this.Size = new Size(32, 32);
-            //this.Load += new EventHandler(this.FieldTiles_Load);
-            this.Paint += new PaintEventHandler(this.FieldTiles_Paint);
-            this.ResumeLayout(false);
-
-        }
-
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        if (components != null)
+        //        {
+        //            components.Dispose();
+        //        }
+        //    }
+        //    base.Dispose(disposing);
+        //}
        
         private void FieldTiles_Paint(object sender, PaintEventArgs e)
         {
