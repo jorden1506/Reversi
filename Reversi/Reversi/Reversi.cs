@@ -20,7 +20,6 @@ namespace Reversi
         private FieldTiles[,] fieldTiles;
         private Panel fieldPanel;
         public Button newGame, help;
-        public Panel p;
         public Label blueScore, redScore, gameState;
         int xRedScore = 300;
         int yRedScore = 20;
@@ -42,6 +41,8 @@ namespace Reversi
             this.Size = new Size(500, 500);
             //this.Load += new EventHandler(this.FieldTiles_Load);
             this.Paint += new PaintEventHandler(this.ReversiForm);
+            this.fieldTiles = new FieldTiles[8, 8];
+
             this.ResumeLayout(false);
 
 
@@ -56,9 +57,12 @@ namespace Reversi
                     // Position it.
                     this.fieldTiles[i, j].Left = j * this.fieldTiles[i, j].Width;
                     this.fieldTiles[i, j].Top = i * this.fieldTiles[i, j].Height;
+                    this.fieldTiles[i, j].Size = new Size(this.fieldTiles[i, j].Width, this.fieldTiles[i, j].Height);
                     // Add it.
                     this.fieldPanel.Controls.Add(this.fieldTiles[i, j]);
-                   
+                    //Add eventhandlers
+                    this.fieldTiles[i, j].Click += new EventHandler(pClicked);
+
                 }
         }
 
@@ -83,10 +87,10 @@ namespace Reversi
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    Point topLeft = new Point(fieldTiles[i,j].row * p.Width / 8 , fieldTiles[i, j].col * p.Height / 8);
-                    Point topRight = new Point(fieldTiles[i, j].row * p.Width / 8 + this.Width, fieldTiles[i, j].col * p.Height / 8);
-                    Point bottomLeft = new Point(fieldTiles[i, j].row * p.Width / 8, fieldTiles[i, j].col * p.Height / 8 + this.Height);
-                    Point bottomRight = new Point(fieldTiles[i, j].row * p.Width / 8 + this.Width, fieldTiles[i, j].col * p.Height / 8 + this.Height);
+                    Point topLeft = new Point(fieldTiles[i,j].row * fieldPanel.Width / 8 , fieldTiles[i, j].col * fieldPanel.Height / 8);
+                    Point topRight = new Point(fieldTiles[i, j].row * fieldPanel.Width / 8 + this.Width, fieldTiles[i, j].col * fieldPanel.Height / 8);
+                    Point bottomLeft = new Point(fieldTiles[i, j].row * fieldPanel.Width / 8, fieldTiles[i, j].col * fieldPanel.Height / 8 + this.Height);
+                    Point bottomRight = new Point(fieldTiles[i, j].row * fieldPanel.Width / 8 + this.Width, fieldTiles[i, j].col * fieldPanel.Height / 8 + this.Height);
 
 
     FieldTiles.pen.Width = 1;
@@ -98,6 +102,25 @@ namespace Reversi
                 }
             }
 
+            for (int q = 0; q < 8; q++)
+            {
+                for (int z = 0; z < 8; z++)
+                {
+                    //Create control for tiles
+                    this.fieldTiles[q, z] = new FieldTiles(q, z);
+
+                    //Give control a position
+                    this.fieldTiles[q, z].Left = q * this.fieldTiles[q, z].Width;
+                    this.fieldTiles[q, z].Top = z * this.fieldTiles[q, z].Height;
+                    this.fieldTiles[q, z].Size = new Size(this.fieldTiles[q, z].Width, this.fieldTiles[q, z].Height);
+
+                    //Add the controls
+                    this.fieldPanel.Controls.Add(this.fieldTiles[q, z]);
+
+                    //Add eventhandlers to the controls
+                    this.fieldTiles[q, z].Click += new EventHandler(pClicked);
+                }
+            }
         }
 
         public void ReversiForm(object sender, PaintEventArgs pea)
@@ -113,10 +136,10 @@ namespace Reversi
             help.Text = "Help";
 
             //Creating the panel in which the game will be played
-            p = new Panel();
-            p.Location = new Point(xPanel, yPanel);
-            p.ClientSize = new Size(xPanelSize, yPanelSize);
-            p.Paint += new PaintEventHandler(FieldTiles_Paint); 
+            fieldPanel = new Panel();
+            fieldPanel.Location = new Point(xPanel, yPanel);
+            fieldPanel.ClientSize = new Size(xPanelSize, yPanelSize);
+            fieldPanel.Paint += new PaintEventHandler(FieldTiles_Paint); 
 
             //Creating the labels
             blueScore = new Label();
@@ -136,7 +159,7 @@ namespace Reversi
             //Adding all elements to the program
             Controls.Add(newGame);
             Controls.Add(help);
-            Controls.Add(p);
+            Controls.Add(fieldPanel);
             Controls.Add(blueScore);
             Controls.Add(redScore);
             Controls.Add(gameState);
@@ -144,6 +167,13 @@ namespace Reversi
 
         }
 
+        public void pClicked(object sender, EventArgs ea)
+        {
+            int mouseRow = 0;
+            int mouseCol = 0;
+            fieldTiles[mouseRow, mouseCol].BackColor = Color.White;
+
+        }
 
         private void Reversi_Load(object sender, EventArgs e)
         {
