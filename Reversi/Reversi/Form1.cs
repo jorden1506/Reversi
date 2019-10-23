@@ -23,7 +23,7 @@ namespace Reversi
         public Form1()
         {
             
-            InitializeComponent();
+
             squareControls = new SquareControl[8, 8];
             fieldPanel = new Panel();
             int i, j;
