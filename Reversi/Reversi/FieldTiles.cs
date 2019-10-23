@@ -21,8 +21,8 @@ namespace Reversi
 
         // Used for animation.
         public static readonly int AnimationStart = 6;
-        public static readonly int AnimationStop = FieldTiles.AnimationStart;
-        public int AnimationCounter = FieldTiles.AnimationStop;
+        public static readonly int AnimationStop = AnimationStart;
+        public int AnimationCounter = AnimationStop;
 
         // These reflect the position of the square on the board.
         public int Row
@@ -53,7 +53,7 @@ namespace Reversi
 
 
             // Set the background color.
-            this.BackColor = FieldTiles.NormalBackColor;
+            this.BackColor = NormalBackColor;
 
 
         }
@@ -86,7 +86,7 @@ namespace Reversi
         private void FieldTiles_Paint(object sender, PaintEventArgs e)
         {
             // Painting it the normal color
-            Color backColor = FieldTiles.NormalBackColor;
+            Color backColor = NormalBackColor;
            
 
             e.Graphics.Clear(backColor);
@@ -97,12 +97,12 @@ namespace Reversi
             Point topRight = new Point(this.Width - 1, 0);
             Point bottomLeft = new Point(0, this.Height - 1);
             Point bottomRight = new Point(this.Width - 1, this.Height - 1);
-            FieldTiles.pen.Width = 1;
-            e.Graphics.DrawLine(FieldTiles.pen, bottomLeft, topLeft);
-            e.Graphics.DrawLine(FieldTiles.pen, topLeft, topRight);
+            pen.Width = 1;
+            e.Graphics.DrawLine(pen, bottomLeft, topLeft);
+            e.Graphics.DrawLine(pen, topLeft, topRight);
             
-            e.Graphics.DrawLine(FieldTiles.pen, bottomLeft, bottomRight);
-            e.Graphics.DrawLine(FieldTiles.pen, bottomRight, topRight);
+            e.Graphics.DrawLine(pen, bottomLeft, bottomRight);
+            e.Graphics.DrawLine(pen, bottomRight, topRight);
 
             
         }
