@@ -73,13 +73,12 @@ namespace Reversi
         
         private void InitializeComponent()
         {
-            this.SuspendLayout();
             
-            this.Name = "SquareControl";
-            this.Size = new Size(32, 32);
-            //this.Load += new EventHandler(this.FieldTiles_Load);
-            this.Paint += new PaintEventHandler(this.FieldTiles_Paint);
-            this.ResumeLayout(false);
+            
+            Name = "FieldTiles";
+            Size = new Size(32, 32);
+            Paint += new PaintEventHandler(this.FieldTiles_Paint);
+            
 
         }
 

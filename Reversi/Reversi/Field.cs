@@ -11,9 +11,9 @@ namespace Reversi
     public class Field
     {
         private int [,] field;
-        public static readonly int Color1 = -1;
+        public static readonly int Black = -1;
         public static readonly int Empty = 0;
-        public static readonly int Color2 = 1;
+        public static readonly int White = 1;
 
         public Field()
         {
@@ -34,10 +34,10 @@ namespace Reversi
                 }
 
             // Set the pieces at the start.
-            //this.field[3, 3] = Color1;
-            //this.field[3, 4] = Color2;
-            //this.field[4, 3] = Color1;
-            //this.field[4, 4] = Color2;
+            //this.field[3, 3] = Black;
+            //this.field[4, 3] = Black;
+            //this.field[3, 4] = White;
+            //this.field[4, 4] = White;
             
         }
         
